@@ -1,71 +1,123 @@
-alert ('Bienvenidos a DataWriter, tienda de libros online, les vamos a pedir algunos datos')
-let cantidadLibros = parseInt(prompt ('¿cuantos libros desea llevar?'))
-let libros = parseInt(prompt ('¿Que tipo de libro buscas?: \n1-Ciencia Ficcion. \n2-Suspenso. \n3- Terror. \n4- Policiales.'))
-let cienciaFiccion = 250 ;
-let suspenso = 200 ;
-let terror = 150 ;
-let policial = 300;
+alert ('Bienvendio a DataWriter, tienda de libros online. Le vamos a estar pidiendo algunos datos.');
+const nombre = prompt ('Por favor, ingrese su nombre.');
+console.log ('Hola ' + nombre);
+let pagoEfectivo = 10;
+let pagoCredito = 15;
+let precioLibro= '500';
 
+let generos = parseInt(prompt('¿Qué tipo de libro buscabas? \n 1- Terror. \n 2- Suspenso. \n 3- Ciencia Ficción. \n 4- Policial.'));
+const terror = 1;
+const suspenso = 2;
+const cienciFiccion = 3;
+const Policial = 4;
 
-while (libros < 1 || libros > 4 ) {
-    alert ('Opción Incorrecta')
-    libros = prompt ('Elija la opcion correcta: ¿Que tipo de libro buscas?: \n1-Ciencia Ficcion. \n2-Suspenso. \n3- Terror. \n4- Policiales.')
+while (generos < 1 || generos > 4){
+    alert ('Opcion incorrecta.');
+    generos = prompt ('Elija una de las opciones dadas: \n 1- Terror. \n 2- Suspenso. \n 3- Ciencia Ficción. \n 4- Policial.');
 }
 
-let pagoLibros = parseInt(prompt('Lo paga en: \n1- Transferencia. \n2- Efectivo.'))
+switch (generos) {
+    case 1:
+        console.log(`Seleccionaste el genero ${terror} "Terror"`);
+        break;
+    case 2:
+        console.log(`Seleccionaste el genero ${suspenso} "Suspenso"`);
+        break;
+    case 3:
+        console.log(`Seleccionaste el genero ${cienciFiccion} "Ciencia Ficción"`);
+        break;
+    case 4:
+        console.log(`Seleccionaste el genero ${Policial} "Policial".`);
+        break
+    default:
+        console.log("saliste");
 
-while  (pagoLibros < 1 || pagoLibros > 2) {
-    alert ('Opcion incorrecta')
-    pagoLibros = prompt ('Quiere pagarlo en: \n1- Transferencia. \n2- Efectivo.')
+ }
 
+
+let cantidadDeLibros = parseInt(prompt('¿Cuantos libros desea llevar?'));
+
+let formaDePago = parseInt(prompt('Ingrese la forma de pago: \n 1- Efectivo. \n 2- Con tarjeta de debito. \n 3- Con tarjeta de credito.'));
+
+while (formaDePago < 1 || formaDePago > 3) {
+    alert ('No ingreso una opcion correcta.')
+    formaDePago = prompt('Selecciones la opción correspondiente: \n 1- Efectivo. \n 2- Con tarjeta de debito. \n 3. Con tarjeta de credito.')
 }
 
-switch (pagoLibros) {
+switch (formaDePago) {
     case 1: 
-        alert ('Seleccionaste para pagar con Transferencia')
-        console.log ('El valor a pagar no tendra descuento incluido')
-        console.log (`Tu precio final es de: ${calcularFiccion}`)
-        console.log (`Tu precio final es de: ${calcularSuspenso} `)
-        console.log (`Tu precio final es de: ${calcularTerror} `)
-        console.log (`Tu precio final es de: ${calcularPolicial} `)
+        alert ('Seleccionaste para pagar con efectivo y vas a tener un descuento de ' + pagoEfectivo + '%.');
+        console.log('Tendras un descuento del 10%.');
+        console.log ('Vas a pagar un total de: ' + calcularEfectivo());
         break
-
     case 2: 
-        alert ('Seleccionaste para pagar en Efectivo')
-        console.log ('El valor a pagar tendra un descuento del 10%')
-        console.log (`Tu precio es de: ${calcularFiccion} `)
-        console.log (`Tu precio es de: ${calcularSuspenso} `)
-        console.log (`Tu precio es de: ${calcularTerror} `)
-        console.log (`Tu precio es de: ${calcularPolicial} `)
+        alert ('Seleccionaste para pagar con Tarjeta de debito.');
+        console.log ('Vas a pagar el valor total del producto.');
+        console.log ('El precio de tu producto es de ')
         break
-    default: 
-    alert ('no valido')
+    case 3: 
+        alert ('Seleccionaste para pagar con Tarjeta de Credito y vas a tener un interes del ' + pagoCredito + '%.');
+        console.log ('A tu precio se le incrementara un 15%.');
+        console.log('Vas a pagar un total de: ' + calcularCredito());
+        break;
 }
 
-function calcularFiccion (ficcion) {
-    valor = cantidadLibros ;
-    resultado = valor * cienciaFiccion; 
-    return ficcion
+function calcularEfectivo (cantidadDeLibros, precio) {
+    total = cantidadDeLibros * precioLibro; 
+    descuento = (precio * 10) / 100;
+    precioFinal = total - descuento; 
+    return total;
 }
 
-function calcularSuspenso (suspenso) {
-    valor = cantidadLibros ;
-    resultado = valor * suspenso ;
-    return suspenso 
+function calcularDebito (cantidadDeLibros, precio) {
+    precio = cantidadDeLibros * precioLibro ;
+    return precio;
 }
 
-function calcularTerror (terror) {
-    valor = cantidadLibros ;
-    resultado = valor * terror ;
-    return terror
-}
-
-function calcularPolicial (policial) {
-    valor = cantidadLibros ;
-    resultado = valor * policial ;
-    return policial
+function calcularCredito (cantidadDeLibros, precio) {
+    total = cantidadDeLibros * precioLibro;
+    interes = (precio * 15) / 100;
+    precioFinal = precio + interes;
+    return total;
 }
 
 
+let libros = [
+    {
+        id: '1',
+        nombre: 'La torre oscura 1',
+        autor: 'Sthepen King',
+        paginas: '288',
+        precio: '$1785',
+        genero: 'policial'
+    },
+    {
+        id: '2',
+        nombre: 'El señor de los anillos',
+        autor: 'J.R.R. Tolkien',
+        paginas: '357',
+        precio: '$1400',
+        genero: 'ciencia ficcion'
+    },
+    {
+        id: '3',
+        nombre: 'Nacidos de la bruma',
+        autor: 'J.R.R. Tolkien',
+        paginas: '987',
+        precio: '$3750',
+        genero: 'suspenso'
+    },
+    {
+        id: '4',
+        nombre: 'El cementerio de animales',
+        autor: 'Stephen King',
+        paginas: '325',
+        precio: '$1400',
+        genero: 'terror'
+    }
 
-alert ('Gracias por su compra')
+]
+
+console.log (libros)
+
+alert ('Gracias por visitar DataWriter')
