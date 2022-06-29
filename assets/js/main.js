@@ -48,17 +48,17 @@ switch (formaDePago) {
     case 1: 
         alert ('Seleccionaste para pagar con efectivo y vas a tener un descuento de ' + pagoEfectivo + '%.');
         console.log('Tendras un descuento del 10%.');
-        console.log ('Vas a pagar un total de: ' + calcularEfectivo());
+        console.log ('Vas a pagar un total de: ' + calcularEfectivo(cantidadDeLibros, precioLibro));
         break
     case 2: 
         alert ('Seleccionaste para pagar con Tarjeta de debito.');
         console.log ('Vas a pagar el valor total del producto.');
-        console.log ('El precio de tu producto es de ')
+        console.log ('El precio de tu producto es de: ' + calcularDebito(cantidadDeLibros, precioLibro))
         break
     case 3: 
         alert ('Seleccionaste para pagar con Tarjeta de Credito y vas a tener un interes del ' + pagoCredito + '%.');
         console.log ('A tu precio se le incrementara un 15%.');
-        console.log('Vas a pagar un total de: ' + calcularCredito());
+        console.log('Vas a pagar un total de: ' + calcularCredito(cantidadDeLibros, precioLibro));
         break;
 }
 
@@ -66,20 +66,22 @@ function calcularEfectivo (cantidadDeLibros, precio) {
     total = cantidadDeLibros * precioLibro; 
     descuento = (precio * 10) / 100;
     precioFinal = total - descuento; 
-    return total;
+    return precioFinal;
 }
 
 function calcularDebito (cantidadDeLibros, precio) {
     precio = cantidadDeLibros * precioLibro ;
-    return precio;
+    return precioFinal;
 }
 
 function calcularCredito (cantidadDeLibros, precio) {
     total = cantidadDeLibros * precioLibro;
     interes = (precio * 15) / 100;
     precioFinal = precio + interes;
-    return total;
+    return precioFinal;
 }
+
+let seguirComprando = (prompt ('¿Desea seguir comprando? \n 1- Si. \n 2- No.'))
 
 
 let libros = [
