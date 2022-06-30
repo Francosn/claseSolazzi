@@ -83,6 +83,63 @@ function calcularCredito (cantidadDeLibros, precio) {
 
 let seguirComprando = (prompt ('¿Desea seguir comprando? \n 1- Si. \n 2- No.'))
 
+if (seguirComprando === 'si') {
+    let generos = parseInt(prompt('¿Qué tipo de libro buscabas? \n 1- Terror. \n 2- Suspenso. \n 3- Ciencia Ficción. \n 4- Policial.'));
+
+    while (generos < 1 || generos > 4){
+        alert ('Opcion incorrecta.');
+        generos = prompt ('Elija una de las opciones dadas: \n 1- Terror. \n 2- Suspenso. \n 3- Ciencia Ficción. \n 4- Policial.');
+    }
+
+    switch (generos) {
+        case 1:
+            console.log(`Seleccionaste el genero ${terror} "Terror"`);
+            break;
+        case 2:
+            console.log(`Seleccionaste el genero ${suspenso} "Suspenso"`);
+            break;
+        case 3:
+            console.log(`Seleccionaste el genero ${cienciFiccion} "Ciencia Ficción"`);
+            break;
+        case 4:
+            console.log(`Seleccionaste el genero ${Policial} "Policial".`);
+            break
+        default:
+            console.log("saliste");
+
+    }  
+
+
+    let cantidadDeLibros = parseInt(prompt('¿Cuantos libros desea llevar?'));
+
+    let formaDePago = parseInt(prompt('Ingrese la forma de pago: \n 1- Efectivo. \n 2- Con tarjeta de debito. \n 3- Con tarjeta de credito.'));
+
+    while (formaDePago < 1 || formaDePago > 3) {
+        alert ('No ingreso una opcion correcta.')
+        formaDePago = prompt('Selecciones la opción correspondiente: \n 1- Efectivo. \n 2- Con tarjeta de debito. \n 3. Con tarjeta de credito.')
+    }
+
+    switch (formaDePago) {
+        case 1: 
+            alert ('Seleccionaste para pagar con efectivo y vas a tener un descuento de ' + pagoEfectivo + '%.');
+            console.log('Tendras un descuento del 10%.');
+            console.log ('Vas a pagar un total de: ' + calcularEfectivo(cantidadDeLibros, precioLibro));
+            break
+        case 2: 
+            alert ('Seleccionaste para pagar con Tarjeta de debito.');
+            console.log ('Vas a pagar el valor total del producto.');
+            console.log ('El precio de tu producto es de: ' + calcularDebito(cantidadDeLibros, precioLibro))
+            break
+        case 3: 
+            alert ('Seleccionaste para pagar con Tarjeta de Credito y vas a tener un interes del ' + pagoCredito + '%.');
+            console.log ('A tu precio se le incrementara un 15%.');
+            console.log('Vas a pagar un total de: ' + calcularCredito(cantidadDeLibros, precioLibro));
+            break;
+    }
+
+    
+}
+
 
 let libros = [
     {
